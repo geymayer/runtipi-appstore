@@ -1,0 +1,25 @@
+{
+  "name": "Haus",
+  "id": "haus",
+  "available": true,
+  "short_desc": "Meters, shared costs, tasks and wiki for a building shared by a few households.",
+  "author": "Florian Geymayer",
+  "port": 8180,
+  "categories": [
+    "utilities"
+  ],
+  "description": "Server for the Haus apps (Android, iOS, macOS, Windows): meter readings, the Betriebskosten split and yearly statement, tasks, appointments, equipment and a wiki. It has no web interface; open one of the apps and enter the app's domain.",
+  "tipi_version": 1,
+  "version": "0.1.0",
+  "source": "https://github.com/geymayer/haus",
+  "exposable": true,
+  "no_gui": true,
+  "supported_architectures": [
+    "arm64",
+    "amd64"
+  ],
+  "created_at": 1792800000000,
+  "updated_at": 1792800000000,
+  "dynamic_config": true,
+  "form_fields": []
+}
