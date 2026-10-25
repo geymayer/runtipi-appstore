@@ -11,6 +11,7 @@ them after a `docker login ghcr.io` with a token that can only read packages.
 | App | Image | Source |
 |---|---|---|
 | `haus` | `ghcr.io/geymayer/haus-server` | [geymayer/haus](https://github.com/geymayer/haus) (private) |
+| `home-relay` | `ghcr.io/geymayer/home-relay` (+ `alexxit/go2rtc`) | [geymayer/home](https://github.com/geymayer/home) (private) |
 
 ## Layout
 
@@ -21,7 +22,7 @@ same on each push.
 
 ## Releasing a new version of an app
 
-1. Push the new image tag.
+1. Push the new image tag (Haus: `v0.2.0`, Home relay: `relay-v0.2.0`; both workflows also do steps 2 and 3).
 2. In the app's `docker-compose.json`, change `image` to the new tag.
 3. In its `config.json`, set `version` to the tag, raise `tipi_version` by one and set
    `updated_at` to now in milliseconds.

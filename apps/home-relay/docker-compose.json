@@ -1,0 +1,67 @@
+{
+  "services": [
+    {
+      "name": "home-relay",
+      "image": "ghcr.io/geymayer/home-relay:0.1.0",
+      "isMain": true,
+      "internalPort": 8130,
+      "dependsOn": [
+        "home-relay-go2rtc"
+      ],
+      "environment": [
+        {
+          "key": "TZ",
+          "value": "${TZ}"
+        },
+        {
+          "key": "RELAY_HA_URL",
+          "value": "${RELAY_HA_URL}"
+        },
+        {
+          "key": "RELAY_GO2RTC_URL",
+          "value": "http://home-relay-go2rtc:1984"
+        },
+        {
+          "key": "RELAY_APNS_KEY_ID",
+          "value": "${RELAY_APNS_KEY_ID}"
+        },
+        {
+          "key": "RELAY_APNS_TEAM_ID",
+          "value": "${RELAY_APNS_TEAM_ID}"
+        },
+        {
+          "key": "RELAY_APNS_KEY_P8_FILE",
+          "value": "/data/apns-key.p8"
+        },
+        {
+          "key": "RELAY_FCM_SERVICE_ACCOUNT_JSON_FILE",
+          "value": "/data/fcm-service-account.json"
+        }
+      ],
+      "volumes": [
+        {
+          "hostPath": "${APP_DATA_DIR}/data",
+          "containerPath": "/data"
+        }
+      ]
+    },
+    {
+      "name": "home-relay-go2rtc",
+      "image": "alexxit/go2rtc:1.9.10",
+      "command": [
+        "go2rtc",
+        "-config",
+        "{\"api\":{\"listen\":\":1984\"},\"rtsp\":{\"listen\":\"127.0.0.1:8554\"},\"webrtc\":{\"listen\":\":8555/tcp\",\"candidates\":[\"${WEBRTC_HOST}:8555/tcp\"]},\"log\":{\"level\":\"info\"}}"
+      ],
+      "addPorts": [
+        {
+          "hostPort": 8555,
+          "containerPort": 8555,
+          "tcp": true
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 2,
+  "$schema": "https://schemas.runtipi.io/v2/dynamic-compose.json"
+}

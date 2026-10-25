@@ -1,0 +1,56 @@
+{
+  "name": "Home relay",
+  "id": "home-relay",
+  "available": true,
+  "short_desc": "Door intercom and camera relay for the Home app: rings, pushes, live video and talk.",
+  "author": "Florian Geymayer",
+  "port": 8130,
+  "categories": [
+    "automation"
+  ],
+  "description": "Relay for the Home app (Android, iOS) next to Home Assistant: watches the door station, sends the ring pushes, serves camera pictures and brings live video and talk to the phones through go2rtc. It has no web interface; open the Home app, go to Settings, Kameras & Klingel, and enter the app's domain.",
+  "tipi_version": 1,
+  "version": "0.1.0",
+  "source": "https://github.com/geymayer/home",
+  "exposable": true,
+  "no_gui": true,
+  "supported_architectures": [
+    "arm64",
+    "amd64"
+  ],
+  "created_at": 1792919696715,
+  "updated_at": 1792919696715,
+  "dynamic_config": true,
+  "form_fields": [
+    {
+      "type": "url",
+      "label": "Home Assistant address",
+      "env_variable": "RELAY_HA_URL",
+      "required": true,
+      "placeholder": "http://192.168.1.10:8123",
+      "hint": "Home Assistant as this server reaches it on the home network. Used only when a phone pairs."
+    },
+    {
+      "type": "fqdnip",
+      "label": "Address of this server for the phones",
+      "env_variable": "WEBRTC_HOST",
+      "required": true,
+      "placeholder": "192.168.1.20",
+      "hint": "The LAN address (or WireGuard address) the phones reach this server on, for live video and talk on port 8555/tcp."
+    },
+    {
+      "type": "text",
+      "label": "APNs key id",
+      "env_variable": "RELAY_APNS_KEY_ID",
+      "required": false,
+      "hint": "iPhone pushes. The .p8 key itself goes into the data folder as apns-key.p8, see the description."
+    },
+    {
+      "type": "text",
+      "label": "Apple team id",
+      "env_variable": "RELAY_APNS_TEAM_ID",
+      "required": false,
+      "hint": "iPhone pushes, together with the APNs key id."
+    }
+  ]
+}
