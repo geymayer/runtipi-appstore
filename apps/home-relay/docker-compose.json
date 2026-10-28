@@ -2,7 +2,7 @@
   "services": [
     {
       "name": "home-relay",
-      "image": "ghcr.io/geymayer/home-relay:0.1.0",
+      "image": "ghcr.io/geymayer/home-relay:0.2.0",
       "isMain": true,
       "internalPort": 8130,
       "dependsOn": [
