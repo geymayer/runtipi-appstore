@@ -1,0 +1,25 @@
+{
+  "name": "Family",
+  "id": "family",
+  "available": true,
+  "short_desc": "Baby and family log shared by the parents' phones: sleep, feeds, diapers and more.",
+  "author": "Florian Geymayer",
+  "port": 8190,
+  "categories": [
+    "utilities"
+  ],
+  "description": "Server for the Family apps: one shared log of a child's sleep, nursing and bottles, solids, diapers, pumping, medicine, temperature and growth, synced between the caregivers' phones, with a nap planner. It has no web interface; open the app and enter the app's domain.",
+  "tipi_version": 1,
+  "version": "0.1.0",
+  "source": "https://github.com/geymayer/family",
+  "exposable": true,
+  "no_gui": true,
+  "supported_architectures": [
+    "arm64",
+    "amd64"
+  ],
+  "created_at": 1793280575455,
+  "updated_at": 1793280575455,
+  "dynamic_config": true,
+  "form_fields": []
+}
