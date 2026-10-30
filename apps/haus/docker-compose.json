@@ -2,7 +2,7 @@
   "services": [
     {
       "name": "haus",
-      "image": "ghcr.io/geymayer/haus-server:0.3.0",
+      "image": "ghcr.io/geymayer/haus-server:0.4.0",
       "isMain": true,
       "internalPort": 8080,
       "environment": [
