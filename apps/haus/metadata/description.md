@@ -1,11 +1,12 @@
 # Haus
 
-Server for the Haus apps (Android, iOS, macOS, Windows), for a building shared by a few
-households: meter readings, the Betriebskosten split and yearly statement, tasks and rotations,
+Server for the Haus apps (Android, iOS, macOS, Windows) and the web app, for a building shared by a
+few households: meter readings, the Betriebskosten split and yearly statement, tasks and rotations,
 appointments, equipment and a wiki. The data stays on this server.
 
-There is no web interface. Expose the app on a domain with a certificate the phones trust, then
-enter that domain in one of the apps.
+Expose the app on a domain with a certificate the phones trust. Open that domain in a browser for
+the web app (since 0.4.0), or enter it in one of the apps. A browser pairs with a code like a phone
+(Einstellungen › Personen).
 
 ## First start
 
