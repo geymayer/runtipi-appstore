@@ -2,14 +2,14 @@
   "name": "Family demo",
   "id": "family-demo",
   "available": true,
-  "short_desc": "Family server with the invented Familie Muster, for testing dev builds. Start only while testing.",
+  "short_desc": "Family server with demo data or a copy of the real data, for testing dev builds. Start only while testing.",
   "author": "Florian Geymayer",
   "port": 8191,
   "categories": [
     "utilities"
   ],
-  "description": "A second Family server preloaded with the invented Familie Muster (caregivers Anna and Ben, a six-month-old called Baby, her last 14 days), for trying out dev builds of the Family app without touching the real family's log. Start it only while testing and stop it afterwards: it is capped at about 200 MB of RAM but the homelab has little to spare. Pair with the re-usable demo codes ANNA0001 (Anna, admin) or BEN00001 (Ben).",
-  "tipi_version": 1,
+  "description": "A second Family server for testing dev builds, never the real family's log: the invented Familie Muster (codes ANNA0001 admin, BEN00001) or a copy of the real Family data, taken from a read-only mount while Family keeps running. The dev app switches between them; this app's Data setting is the fallback. Start it only while testing and stop it afterwards: the homelab has little RAM to spare (capped at 200 MB, half a CPU).",
+  "tipi_version": 2,
   "version": "0.1.0",
   "source": "https://github.com/geymayer/family",
   "exposable": true,
@@ -19,7 +19,46 @@
     "amd64"
   ],
   "created_at": 1793903452681,
-  "updated_at": 1793903452681,
+  "updated_at": 1793904132234,
   "dynamic_config": true,
-  "form_fields": []
+  "form_fields": [
+    {
+      "type": "text",
+      "label": "Data",
+      "env_variable": "DEMO_DATA",
+      "required": true,
+      "default": "app",
+      "options": [
+        {
+          "label": "Chosen in the dev app (demo until it switches)",
+          "value": "app"
+        },
+        {
+          "label": "Demo data (Familie Muster)",
+          "value": "demo"
+        },
+        {
+          "label": "Copy of the real Family data",
+          "value": "copy"
+        }
+      ],
+      "hint": "Which dataset the demo server runs on. 'Chosen in the dev app' follows the dev build's Dev data switch; Demo and Copy override it. The copy is taken from the Family app's folder, mounted read-only, while it keeps running."
+    },
+    {
+      "type": "boolean",
+      "label": "Refresh the copy on every start",
+      "env_variable": "DEMO_REFRESH",
+      "required": false,
+      "default": false,
+      "hint": "Copy mode: takes a new copy of the real data at every start while this is on. Turn it off again after the refresh; the dev app can ask for a refresh itself."
+    },
+    {
+      "type": "random",
+      "label": "Dev switch token",
+      "env_variable": "DEV_SWITCH_TOKEN",
+      "min": 32,
+      "encoding": "hex",
+      "hint": "Generated: the token the dev app sends to switch the data. Valid on this demo server only."
+    }
+  ]
 }

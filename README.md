@@ -13,11 +13,31 @@ them after a `docker login ghcr.io` with a token that can only read packages.
 | `haus` | `ghcr.io/geymayer/haus-server` | [geymayer/haus](https://github.com/geymayer/haus) (private) |
 | `home-relay` | `ghcr.io/geymayer/home-relay` (+ `alexxit/go2rtc`) | [geymayer/home](https://github.com/geymayer/home) (private) |
 | `family` | `ghcr.io/geymayer/family-server` | [geymayer/family](https://github.com/geymayer/family) (private) |
-| `haus-demo` | `ghcr.io/geymayer/haus-server` | Haus with the demo building, for testing dev builds |
-| `family-demo` | `ghcr.io/geymayer/family-server` | Family with the demo family, for testing dev builds |
+| `haus-demo` | `ghcr.io/geymayer/haus-server` | Haus on demo data or a copy of the real data, for dev builds |
+| `family-demo` | `ghcr.io/geymayer/family-server` | Family on demo data or a copy of the real data, for dev builds |
 
-The demo apps run only while a dev build is tested (start, test, stop): the homelab has little RAM
-to spare, and each is capped at 200 MB. Their image follows the real app's; bump both together.
+Planned: `cook-fake-tandoor` (Cook's fake Tandoor for the Cook dev build's Demo profile), once
+geymayer/cook publishes an image of `tools/fake_tandoor.py`; there is none yet.
+
+## Demo apps
+
+`haus-demo` and `family-demo` run only while a dev build is tested (start, test, stop): the
+homelab has little RAM to spare. Each is capped at 200 MB and half a CPU, raises its own
+`oom_score_adj` to 1000 so the kernel would stop it before any real app, and shares no port, data
+folder or container with the real app. Their image follows the real app's; bump both together.
+
+Their entrypoint is `scripts/demo-data.sh` (`bun scripts/embed-demo-data.ts` copies it into both
+`docker-compose.json` files; a test fails when it is stale, and other tests run it against stubs).
+It starts the server on `data/demo/` (seeded demo data) or `data/copy/` (a copy of the real app's
+data), as `data/mode` says, or as the app's Data setting forces. The real app's data folder is
+mounted read-only at `/real` (`${APP_DATA_DIR}/../<app>/data`); the copy is the server's own backup
+command (SQLite `VACUUM INTO`) reading it while the real server runs, at idle I/O and lowest CPU
+priority, taken when `data/copy/` is missing, `data/refresh` exists or the Refresh setting is on.
+SQLite reads a WAL database on a read-only mount without writing its `-shm` and never blocks the
+writer; a database nobody has open (no `-wal`, no `-shm`) is copied as files. The script refuses to
+copy from a folder that is not a read-only mount. `DEV_DATA_SWITCH=1` and the generated
+`DEV_SWITCH_TOKEN` are for the servers' coming dev endpoints (`GET`/`POST /dev/data`, which write
+`data/mode` and `data/refresh` and exit; `restart: unless-stopped` brings the server back).
 
 ## Layout
 

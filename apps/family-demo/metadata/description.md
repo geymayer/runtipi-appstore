@@ -1,30 +1,61 @@
 # Family demo
 
-A second Family server, preloaded with the invented **Familie Muster**: caregivers Anna (admin) and
-Ben, and their daughter, about six months old and simply called Baby, with the last 14 days of her
-log. It is for trying out dev builds of the Family app without touching the real family's data. It
-runs the same image as the Family app, with its own data folder and port.
+A second Family server for testing dev builds of the Family app. It never runs on the real
+family's log: it runs either on the invented **Familie Muster** (caregivers Anna and Ben, and a
+daughter of about six months simply called Baby, with her last 14 days) or on a **copy of the real
+Family data**. It uses the same image as the Family app, with its own data folder, port and
+container. There is no web interface.
 
 ## Only while testing
 
-The homelab has little RAM to spare, so this app is meant to run only while a dev build is being
-tested: start it, test, stop it. It is capped at about 200 MB (Java heap 96 MB), which is enough for
-a few test phones but not for real use.
+The homelab has little RAM to spare. Start this app while you test a dev build, and stop it
+afterwards. It is capped at 200 MB of memory (Java heap 96 MB) and half a CPU, and it is the first
+process the kernel stops if the machine ever runs out of memory, so it cannot starve the real apps.
 
-## Pairing
+## Demo data or a copy of the real data
 
-There is no web interface. Expose the app on its own domain (like the real Family app) and enter
-that domain in the app. Pair with one of the demo codes; they can be used again and again, and only
-work on this demo server:
+- **Demo data**: Familie Muster, loaded once into an empty folder (`data/demo/`), with the 14 days
+  ending at that first start; what tests change stays.
+- **Copy of the real data**: `data/copy/`, taken from the Family app's data folder, which this app
+  sees read-only. The copy is taken online with SQLite's `VACUUM INTO` (the Family server's own
+  backup command) at the lowest CPU and I/O priority: the real Family keeps running, is never
+  stopped, paused or restarted, and nothing is ever written to its folder. Real backups are not
+  copied.
 
-| Code | Caregiver |
-|---|---|
-| `ANNA0001` | Anna (admin) |
-| `BEN00001` | Ben |
+Who chooses:
 
-## Starting over
+- **Data → Chosen in the dev app** (default): the dev build's *Dev data* section in Settings switches
+  and refreshes; the server restarts on the other dataset within seconds. Until the Family server
+  has that switch, this starts on the demo data.
+- **Data → Demo data** or **Copy of the real Family data**: runtipi decides (the fallback).
+  **Refresh the copy on every start** takes a new copy at each start while it is on; turn it off
+  again after.
 
-The demo family is loaded once, into an empty data folder, with the 14 days ending at that first
-start; what the tests change stays, and the log grows older. For a fresh Familie Muster, stop the
-app, delete `<runtipi>/app-data/geymayer/family-demo/data` and start it again. Nothing here needs a
-backup.
+Both datasets stay when you switch; nothing is deleted. To start Familie Muster afresh, stop the
+app, delete `<runtipi>/app-data/geymayer/family-demo/data/demo` and start it again.
+
+The dev app authenticates its switch with the **Dev switch token** runtipi generated for this app
+(valid on this demo server only):
+
+```sh
+grep DEV_SWITCH_TOKEN <runtipi>/app-data/geymayer/family-demo/app.env
+```
+
+## Pairing a dev build
+
+Dev builds pair fresh; they never take over a real phone's sign-in.
+
+- Demo data: the re-usable demo codes `ANNA0001` (Anna, admin) and `BEN00001` (Ben). They work only
+  on the demo data.
+- Copy of the real data: until the server can mint a code on the copy itself, create a pairing code
+  in the real Family app (valid 24 hours), then refresh the copy and enter that code in the dev
+  build. The code is used up on the copy only; on the real server it simply expires unused.
+
+The copy holds the real phones' device sign-ins and the Home relay's connection token too. They
+would only work if a phone or the relay were pointed at this demo's address, which none is; the
+server has no switch to revoke them all, so keep this app's domain to yourself.
+
+## Nothing leaves the server
+
+The Family server sends nothing out: no pushes, mails or webhooks; the Home relay asks it, never the
+other way round. Its nightly backups are switched off here (`FAMILY_BACKUP_HOUR=off`).
