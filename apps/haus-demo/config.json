@@ -1,0 +1,25 @@
+{
+  "name": "Haus demo",
+  "id": "haus-demo",
+  "available": true,
+  "short_desc": "Haus server with the invented Musterhaus, for testing dev builds. Start only while testing.",
+  "author": "Florian Geymayer",
+  "port": 8181,
+  "categories": [
+    "utilities"
+  ],
+  "description": "A second Haus server preloaded with the invented demo building Musterhaus (households Berger, Huber, Wagner), for trying out dev builds of the Haus apps without touching the real building. Start it only while testing and stop it afterwards: it is capped at about 200 MB of RAM but the homelab has little to spare. Pair with the re-usable demo codes BERGER01 (admin), HUBER001 or WAGNER01.",
+  "tipi_version": 1,
+  "version": "0.4.0",
+  "source": "https://github.com/geymayer/haus",
+  "exposable": true,
+  "no_gui": false,
+  "supported_architectures": [
+    "arm64",
+    "amd64"
+  ],
+  "created_at": 1793903452681,
+  "updated_at": 1793903452681,
+  "dynamic_config": true,
+  "form_fields": []
+}

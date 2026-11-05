@@ -1,0 +1,25 @@
+{
+  "name": "Family demo",
+  "id": "family-demo",
+  "available": true,
+  "short_desc": "Family server with the invented Familie Muster, for testing dev builds. Start only while testing.",
+  "author": "Florian Geymayer",
+  "port": 8191,
+  "categories": [
+    "utilities"
+  ],
+  "description": "A second Family server preloaded with the invented Familie Muster (caregivers Anna and Ben, a six-month-old called Baby, her last 14 days), for trying out dev builds of the Family app without touching the real family's log. Start it only while testing and stop it afterwards: it is capped at about 200 MB of RAM but the homelab has little to spare. Pair with the re-usable demo codes ANNA0001 (Anna, admin) or BEN00001 (Ben).",
+  "tipi_version": 1,
+  "version": "0.1.0",
+  "source": "https://github.com/geymayer/family",
+  "exposable": true,
+  "no_gui": true,
+  "supported_architectures": [
+    "arm64",
+    "amd64"
+  ],
+  "created_at": 1793903452681,
+  "updated_at": 1793903452681,
+  "dynamic_config": true,
+  "form_fields": []
+}

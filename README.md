@@ -13,6 +13,11 @@ them after a `docker login ghcr.io` with a token that can only read packages.
 | `haus` | `ghcr.io/geymayer/haus-server` | [geymayer/haus](https://github.com/geymayer/haus) (private) |
 | `home-relay` | `ghcr.io/geymayer/home-relay` (+ `alexxit/go2rtc`) | [geymayer/home](https://github.com/geymayer/home) (private) |
 | `family` | `ghcr.io/geymayer/family-server` | [geymayer/family](https://github.com/geymayer/family) (private) |
+| `haus-demo` | `ghcr.io/geymayer/haus-server` | Haus with the demo building, for testing dev builds |
+| `family-demo` | `ghcr.io/geymayer/family-server` | Family with the demo family, for testing dev builds |
+
+The demo apps run only while a dev build is tested (start, test, stop): the homelab has little RAM
+to spare, and each is capped at 200 MB. Their image follows the real app's; bump both together.
 
 ## Layout
 

@@ -1,0 +1,39 @@
+{
+  "services": [
+    {
+      "name": "haus-demo",
+      "image": "ghcr.io/geymayer/haus-server:0.4.0",
+      "isMain": true,
+      "internalPort": 8080,
+      "environment": [
+        {
+          "key": "TZ",
+          "value": "${TZ}"
+        },
+        {
+          "key": "HAUS_SEED",
+          "value": "demo"
+        },
+        {
+          "key": "JAVA_TOOL_OPTIONS",
+          "value": "-Xmx96m -XX:+UseSerialGC -XX:MaxDirectMemorySize=32m -XX:ReservedCodeCacheSize=32m -Xss512k"
+        }
+      ],
+      "volumes": [
+        {
+          "hostPath": "${APP_DATA_DIR}/data",
+          "containerPath": "/data"
+        }
+      ],
+      "deploy": {
+        "resources": {
+          "limits": {
+            "memory": "200M"
+          }
+        }
+      }
+    }
+  ],
+  "schemaVersion": 2,
+  "$schema": "https://schemas.runtipi.io/v2/dynamic-compose.json"
+}
