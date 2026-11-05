@@ -9,8 +9,8 @@
     "utilities"
   ],
   "description": "Server for the Family apps: one shared log of a child's sleep, nursing and bottles, solids, diapers, pumping, medicine, temperature and growth, synced between the caregivers' phones, with a nap planner. It has no web interface; open the app and enter the app's domain.",
-  "tipi_version": 2,
-  "version": "0.4.0",
+  "tipi_version": 3,
+  "version": "0.4.1",
   "source": "https://github.com/geymayer/family",
   "exposable": true,
   "no_gui": true,
@@ -19,7 +19,7 @@
     "amd64"
   ],
   "created_at": 1793280575455,
-  "updated_at": 1793906103123,
+  "updated_at": 1793911073494,
   "dynamic_config": true,
   "form_fields": [
     {
@@ -39,6 +39,21 @@
       "default": 30,
       "min": 1,
       "max": 3650
+    },
+    {
+      "type": "password",
+      "label": "Pairing page password",
+      "hint": "Optional. Turns on https://<domain>/pair, which shows the current pairing codes with a QR code, behind this password (any user name). Empty: no page.",
+      "required": false,
+      "env_variable": "PAIR_PAGE_PASSWORD"
+    },
+    {
+      "type": "boolean",
+      "label": "Pairing page from outside the home network",
+      "hint": "Off: the pairing page answers home-network addresses only.",
+      "required": false,
+      "env_variable": "PAIR_PAGE_ALLOW_REMOTE",
+      "default": false
     }
   ]
 }

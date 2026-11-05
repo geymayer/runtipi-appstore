@@ -9,8 +9,8 @@
     "utilities"
   ],
   "description": "A second Family server for testing dev builds, never the real family's log: the invented Familie Muster (codes ANNA0001 admin, BEN00001) or a copy of the real Family data, taken from a read-only mount while Family keeps running. The dev app switches between them and pairs itself; this app's Data setting is the fallback. Start it only while testing and stop it afterwards: the homelab has little RAM to spare (capped at 200 MB, half a CPU).",
-  "tipi_version": 3,
-  "version": "0.4.0",
+  "tipi_version": 4,
+  "version": "0.4.1",
   "source": "https://github.com/geymayer/family",
   "exposable": true,
   "no_gui": true,
@@ -19,7 +19,7 @@
     "amd64"
   ],
   "created_at": 1793903452681,
-  "updated_at": 1793906103104,
+  "updated_at": 1793911073474,
   "dynamic_config": true,
   "form_fields": [
     {
@@ -59,6 +59,21 @@
       "min": 32,
       "encoding": "hex",
       "hint": "Generated: the token the dev app sends to switch the data. Valid on this demo server only."
+    },
+    {
+      "type": "password",
+      "label": "Pairing page password",
+      "hint": "Optional. Turns on https://<domain>/pair, which shows the current pairing codes with a QR code, behind this password (any user name). Empty: no page.",
+      "required": false,
+      "env_variable": "PAIR_PAGE_PASSWORD"
+    },
+    {
+      "type": "boolean",
+      "label": "Pairing page from outside the home network",
+      "hint": "Off: the pairing page answers home-network addresses only.",
+      "required": false,
+      "env_variable": "PAIR_PAGE_ALLOW_REMOTE",
+      "default": false
     }
   ]
 }

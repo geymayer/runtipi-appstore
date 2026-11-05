@@ -1,0 +1,25 @@
+{
+  "name": "Cook fake Tandoor",
+  "id": "cook-fake-tandoor",
+  "available": true,
+  "short_desc": "Fake Tandoor with invented recipes for testing Cook dev builds. Start only while testing.",
+  "author": "Florian Geymayer",
+  "port": 8170,
+  "categories": [
+    "utilities"
+  ],
+  "description": "A fake Tandoor Recipes server with invented demo data (user test / test), the Demo profile of Cook's dev builds. Everything is in memory: a restart resets it, nothing real is stored, and it never talks to your real Tandoor. Start it only while testing and stop it afterwards (capped at 64 MB and a quarter CPU).",
+  "tipi_version": 1,
+  "version": "1.0.0",
+  "source": "https://github.com/geymayer/cook",
+  "exposable": true,
+  "no_gui": false,
+  "supported_architectures": [
+    "arm64",
+    "amd64"
+  ],
+  "created_at": 1793911101572,
+  "updated_at": 1793911101572,
+  "dynamic_config": true,
+  "form_fields": []
+}

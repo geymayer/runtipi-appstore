@@ -2,7 +2,7 @@
   "services": [
     {
       "name": "haus-demo",
-      "image": "ghcr.io/geymayer/haus-server:0.4.0",
+      "image": "ghcr.io/geymayer/haus-server:0.4.2",
       "isMain": true,
       "internalPort": 8080,
       "restart": "unless-stopped",
@@ -34,6 +34,14 @@
         {
           "key": "JAVA_TOOL_OPTIONS",
           "value": "-Xmx96m -XX:+UseSerialGC -XX:MaxDirectMemorySize=32m -XX:ReservedCodeCacheSize=32m -Xss512k"
+        },
+        {
+          "key": "PAIR_PAGE_PASSWORD",
+          "value": "${PAIR_PAGE_PASSWORD}"
+        },
+        {
+          "key": "PAIR_PAGE_ALLOW_REMOTE",
+          "value": "${PAIR_PAGE_ALLOW_REMOTE}"
         }
       ],
       "volumes": [

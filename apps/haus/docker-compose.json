@@ -9,6 +9,14 @@
         {
           "key": "TZ",
           "value": "${TZ}"
+        },
+        {
+          "key": "PAIR_PAGE_PASSWORD",
+          "value": "${PAIR_PAGE_PASSWORD}"
+        },
+        {
+          "key": "PAIR_PAGE_ALLOW_REMOTE",
+          "value": "${PAIR_PAGE_ALLOW_REMOTE}"
         }
       ],
       "volumes": [

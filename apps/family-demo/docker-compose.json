@@ -2,7 +2,7 @@
   "services": [
     {
       "name": "family-demo",
-      "image": "ghcr.io/geymayer/family-server:0.4.0",
+      "image": "ghcr.io/geymayer/family-server:0.4.1",
       "isMain": true,
       "internalPort": 8140,
       "restart": "unless-stopped",
@@ -38,6 +38,14 @@
         {
           "key": "JAVA_TOOL_OPTIONS",
           "value": "-Xmx96m -XX:+UseSerialGC -XX:MaxDirectMemorySize=32m -XX:ReservedCodeCacheSize=32m -Xss512k"
+        },
+        {
+          "key": "PAIR_PAGE_PASSWORD",
+          "value": "${PAIR_PAGE_PASSWORD}"
+        },
+        {
+          "key": "PAIR_PAGE_ALLOW_REMOTE",
+          "value": "${PAIR_PAGE_ALLOW_REMOTE}"
         }
       ],
       "volumes": [

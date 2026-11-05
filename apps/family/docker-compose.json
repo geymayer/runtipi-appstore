@@ -2,7 +2,7 @@
   "services": [
     {
       "name": "family",
-      "image": "ghcr.io/geymayer/family-server:0.4.0",
+      "image": "ghcr.io/geymayer/family-server:0.4.1",
       "isMain": true,
       "internalPort": 8140,
       "environment": [
@@ -17,6 +17,14 @@
         {
           "key": "FAMILY_BACKUP_KEEP",
           "value": "${FAMILY_BACKUP_KEEP}"
+        },
+        {
+          "key": "PAIR_PAGE_PASSWORD",
+          "value": "${PAIR_PAGE_PASSWORD}"
+        },
+        {
+          "key": "PAIR_PAGE_ALLOW_REMOTE",
+          "value": "${PAIR_PAGE_ALLOW_REMOTE}"
         }
       ],
       "volumes": [

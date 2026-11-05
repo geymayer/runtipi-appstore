@@ -1,0 +1,27 @@
+{
+  "services": [
+    {
+      "name": "cook-fake-tandoor",
+      "image": "ghcr.io/geymayer/cook-fake-tandoor:1.0.0",
+      "isMain": true,
+      "internalPort": 8765,
+      "restart": "unless-stopped",
+      "environment": [
+        {
+          "key": "TZ",
+          "value": "${TZ}"
+        }
+      ],
+      "deploy": {
+        "resources": {
+          "limits": {
+            "memory": "64M",
+            "cpus": "0.25"
+          }
+        }
+      }
+    }
+  ],
+  "schemaVersion": 2,
+  "$schema": "https://schemas.runtipi.io/v2/dynamic-compose.json"
+}

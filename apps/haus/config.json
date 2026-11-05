@@ -9,7 +9,7 @@
     "utilities"
   ],
   "description": "Server for the Haus apps (Android, iOS, macOS, Windows) and the web app it serves at its own address: meter readings, the Betriebskosten split and yearly statement, tasks, appointments, equipment and a wiki. Open the app's domain in a browser, or enter it in one of the apps.",
-  "tipi_version": 7,
+  "tipi_version": 8,
   "version": "0.4.2",
   "source": "https://github.com/geymayer/haus",
   "exposable": true,
@@ -19,7 +19,23 @@
     "amd64"
   ],
   "created_at": 1792800000000,
-  "updated_at": 1793910573039,
+  "updated_at": 1793911082432,
   "dynamic_config": true,
-  "form_fields": []
+  "form_fields": [
+    {
+      "type": "password",
+      "label": "Pairing page password",
+      "hint": "Optional. Turns on https://<domain>/pair, which shows the current pairing codes with a QR code, behind this password (any user name). Empty: no page.",
+      "required": false,
+      "env_variable": "PAIR_PAGE_PASSWORD"
+    },
+    {
+      "type": "boolean",
+      "label": "Pairing page from outside the home network",
+      "hint": "Off: the pairing page answers home-network addresses only.",
+      "required": false,
+      "env_variable": "PAIR_PAGE_ALLOW_REMOTE",
+      "default": false
+    }
+  ]
 }
