@@ -25,8 +25,7 @@ process the kernel stops if the machine ever runs out of memory, so it cannot st
 Who chooses:
 
 - **Data → Chosen in the dev app** (default): the dev build's *Dev data* section in Settings switches
-  and refreshes; the server restarts on the other dataset within seconds. Until the Family server
-  has that switch, this starts on the demo data.
+  and refreshes; the server restarts on the other dataset within seconds (Family server 0.4.1 or later).
 - **Data → Demo data** or **Copy of the real Family data**: runtipi decides (the fallback).
   **Refresh the copy on every start** takes a new copy at each start while it is on; turn it off
   again after.
@@ -47,13 +46,19 @@ Dev builds pair fresh; they never take over a real phone's sign-in.
 
 - Demo data: the re-usable demo codes `ANNA0001` (Anna, admin) and `BEN00001` (Ben). They work only
   on the demo data.
-- Copy of the real data: until the server can mint a code on the copy itself, create a pairing code
-  in the real Family app (valid 24 hours), then refresh the copy and enter that code in the dev
-  build. The code is used up on the copy only; on the real server it simply expires unused.
+- Copy of the real data: the dev build pairs itself — after a switch it asks this demo server (with
+  the Dev switch token) for a one-time code on the copy and signs in with it. Nothing is needed in the
+  real Family app.
 
-The copy holds the real phones' device sign-ins and the Home relay's connection token too. They
-would only work if a phone or the relay were pointed at this demo's address, which none is; the
-server has no switch to revoke them all, so keep this app's domain to yourself.
+When a fresh copy starts for the first time, the server revokes every copied sign-in — the real
+phones' device tokens and the Home relay's connection token — and deletes the copy's unused pairing
+codes, so nothing real can ever run against this demo.
+
+## Pairing page
+
+Optional, like on the real Family app: set a **Pairing page password** to see the current codes with a
+QR code at `/pair` (home network only unless allowed from outside). Open it through the app's runtipi
+domain, not the published host port.
 
 ## Nothing leaves the server
 
