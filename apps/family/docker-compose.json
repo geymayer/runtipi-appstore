@@ -2,13 +2,21 @@
   "services": [
     {
       "name": "family",
-      "image": "ghcr.io/geymayer/family-server:0.1.0",
+      "image": "ghcr.io/geymayer/family-server:0.4.0",
       "isMain": true,
       "internalPort": 8140,
       "environment": [
         {
           "key": "TZ",
           "value": "${TZ}"
+        },
+        {
+          "key": "FAMILY_BACKUP_HOUR",
+          "value": "${FAMILY_BACKUP_HOUR}"
+        },
+        {
+          "key": "FAMILY_BACKUP_KEEP",
+          "value": "${FAMILY_BACKUP_KEEP}"
         }
       ],
       "volumes": [
