@@ -17,6 +17,14 @@
         {
           "key": "PAIR_PAGE_ALLOW_REMOTE",
           "value": "${PAIR_PAGE_ALLOW_REMOTE}"
+        },
+        {
+          "key": "CITIES_LOGIN",
+          "value": "${CITIES_LOGIN}"
+        },
+        {
+          "key": "CITIES_PASSWORD",
+          "value": "${CITIES_PASSWORD}"
         }
       ],
       "volumes": [
