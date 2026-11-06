@@ -9,8 +9,8 @@
     "utilities"
   ],
   "description": "A second Haus server for testing dev builds, never the real building: the invented Musterhaus (codes BERGER01 admin, HUBER001, WAGNER01) or a copy of the real Haus data, taken from a read-only mount while Haus keeps running. The dev app switches between them; this app's Data setting is the fallback. Start it only while testing and stop it afterwards: the homelab has little RAM to spare (capped at 200 MB, half a CPU).",
-  "tipi_version": 5,
-  "version": "0.5.0",
+  "tipi_version": 6,
+  "version": "0.5.1",
   "source": "https://github.com/geymayer/haus",
   "exposable": true,
   "no_gui": false,
@@ -19,7 +19,7 @@
     "amd64"
   ],
   "created_at": 1793903452681,
-  "updated_at": 1794003175239,
+  "updated_at": 1794007571063,
   "dynamic_config": true,
   "form_fields": [
     {
