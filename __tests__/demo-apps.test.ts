@@ -43,9 +43,10 @@ describe("demo apps", () => {
       expect(refresh.default).toBe(false);
     });
 
-    test(`${app} turns the dev switch on with a generated token and restarts its server`, () => {
+    test(`${app} turns the dev switch on with a visible token and restarts its server`, () => {
       const token = config.form_fields.find((f: any) => f.env_variable === "DEV_SWITCH_TOKEN");
-      expect(token.type).toBe("random");
+      expect(token.type).toBe("text");
+      expect(token.required).toBe(false);
       expect(service.environment).toContainEqual({ key: "DEV_DATA_SWITCH", value: "1" });
       expect(service.environment).toContainEqual({ key: "DEV_SWITCH_TOKEN", value: "${DEV_SWITCH_TOKEN}" });
       expect(service.restart).toBe("unless-stopped");
@@ -124,6 +125,25 @@ describe("demo-data.sh", () => {
         const p = path.join(real, f);
         return fs.statSync(p).isFile() ? `${f}=${fs.readFileSync(p, "utf-8")}` : `${f}/`;
       });
+
+  test("an empty token is generated once, kept and shown in the log", () => {
+    const first = run();
+    expect(first.code).toBe(0);
+    const token = read("dev-switch-token");
+    expect(token).toMatch(/^[0-9a-f]{48}$/);
+    expect(first.out).toContain(`dev switch token (enter it in the dev app's Dev data section): ${token}`);
+    expect(fs.statSync(path.join(own, "dev-switch-token")).mode & 0o077).toBe(0);
+    const second = run();
+    expect(second.out).toContain(token);
+    expect(read("dev-switch-token")).toBe(token);
+  });
+
+  test("a token from runtipi's settings wins and is shown, nothing is stored", () => {
+    const r = run({ DEV_SWITCH_TOKEN: "from-runtipi-123" });
+    expect(r.code).toBe(0);
+    expect(r.out).toContain("dev switch token (enter it in the dev app's Dev data section): from-runtipi-123");
+    expect(exists("dev-switch-token")).toBe(false);
+  });
 
   test("without a mode file it starts on the seeded demo dataset", () => {
     const r = run();
@@ -219,7 +239,7 @@ describe("demo-data.sh", () => {
     write(path.join(own, "haus.db"), "demo data");
     write(path.join(own, "files", "x"), "x");
     expect(run().code).toBe(0);
-    expect(fs.readdirSync(own).sort()).toEqual(["demo", "mode"]);
+    expect(fs.readdirSync(own).sort()).toEqual(["demo", "dev-switch-token", "mode"]);
     expect(read("demo/haus.db")).toBe("demo data");
   });
 

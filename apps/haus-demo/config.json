@@ -9,7 +9,7 @@
     "utilities"
   ],
   "description": "A second Haus server for testing dev builds, never the real building: the invented Musterhaus (codes BERGER01 admin, HUBER001, WAGNER01) or a copy of the real Haus data, taken from a read-only mount while Haus keeps running. The dev app switches between them; this app's Data setting is the fallback. Start it only while testing and stop it afterwards: the homelab has little RAM to spare (capped at 200 MB, half a CPU).",
-  "tipi_version": 3,
+  "tipi_version": 4,
   "version": "0.4.2",
   "source": "https://github.com/geymayer/haus",
   "exposable": true,
@@ -19,7 +19,7 @@
     "amd64"
   ],
   "created_at": 1793903452681,
-  "updated_at": 1793911073473,
+  "updated_at": 1793944499435,
   "dynamic_config": true,
   "form_fields": [
     {
@@ -53,12 +53,11 @@
       "hint": "Copy mode: takes a new copy of the real data at every start while this is on. Turn it off again after the refresh; the dev app can ask for a refresh itself."
     },
     {
-      "type": "random",
+      "type": "text",
       "label": "Dev switch token",
       "env_variable": "DEV_SWITCH_TOKEN",
-      "min": 32,
-      "encoding": "hex",
-      "hint": "Generated: the token the dev app sends to switch the data. Valid on this demo server only."
+      "required": false,
+      "hint": "The token the dev app's Dev data section asks for; valid on this demo server only. Leave empty to have one generated: it is shown in this app's log at every start."
     },
     {
       "type": "password",

@@ -30,12 +30,14 @@ Who chooses:
 Both datasets stay when you switch; nothing is deleted. To start the demo building afresh, stop the
 app, delete `<runtipi>/app-data/geymayer/haus-demo/data/demo` and start it again.
 
-The dev app authenticates its switch with the **Dev switch token** runtipi generated for this app
-(valid on this demo server only):
+The dev app authenticates its switch with the **Dev switch token** (valid on this demo server only).
+You see it in two places:
 
-```sh
-grep DEV_SWITCH_TOKEN <runtipi>/app-data/geymayer/haus-demo/app.env
-```
+- **Settings** of this app in runtipi: the *Dev switch token* field. Put any long random text there
+  if you like; it is used as is.
+- **Logs** of this app in runtipi: at every start the app prints
+  `dev switch token (enter it in the dev app's Dev data section): …`. With the field left empty, a
+  token is generated once, kept in the app's data folder and shown there.
 
 ## Pairing a dev build
 

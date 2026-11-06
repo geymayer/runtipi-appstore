@@ -92,7 +92,7 @@ if [ -f "$root/$db" ] && [ ! -e "$demo_dir" ]; then
     log "moving the demo data into $demo_dir"
     mkdir -p "$demo_dir"
     find "$root" -mindepth 1 -maxdepth 1 ! -name demo ! -name copy ! -name mode ! -name refresh \
-        ! -name copy-taken-at -exec mv {} "$demo_dir"/ \;
+        ! -name copy-taken-at ! -name dev-switch-token -exec mv {} "$demo_dir"/ \;
 fi
 
 case "$choice" in
@@ -122,6 +122,18 @@ fi
 echo "$mode" > "$mode_file"
 # The server writes mode and refresh itself (POST /dev/data), as its own user.
 if id "$app" >/dev/null 2>&1; then chown "$app:$app" "$root" "$mode_file"; fi
+
+# The dev switch token: the one from runtipi's settings, else one generated once and kept in $root.
+# It is printed to the log so runtipi's log view shows it; it is valid on this demo server only.
+token_file="$root/dev-switch-token"
+if [ -z "${DEV_SWITCH_TOKEN:-}" ]; then
+    if [ ! -s "$token_file" ]; then
+        (umask 077; od -An -tx1 -N24 /dev/urandom | tr -d ' \n' > "$token_file")
+    fi
+    DEV_SWITCH_TOKEN=$(cat "$token_file")
+    export DEV_SWITCH_TOKEN
+fi
+log "dev switch token (enter it in the dev app's Dev data section): $DEV_SWITCH_TOKEN"
 
 # The first process the kernel kills if the machine runs out of memory, never a real app.
 echo 1000 > /proc/self/oom_score_adj 2>/dev/null || log "could not raise oom_score_adj"
