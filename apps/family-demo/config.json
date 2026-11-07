@@ -9,8 +9,8 @@
     "utilities"
   ],
   "description": "A second Family server for testing dev builds, never the real family's log: the invented Familie Muster (codes ANNA0001 admin, BEN00001) or a copy of the real Family data, taken from a read-only mount while Family keeps running. The dev app switches between them and pairs itself; this app's Data setting is the fallback. Start it only while testing and stop it afterwards: the homelab has little RAM to spare (capped at 200 MB, half a CPU).",
-  "tipi_version": 14,
-  "version": "dev-503ae79",
+  "tipi_version": 15,
+  "version": "dev-a6d2693",
   "source": "https://github.com/geymayer/family",
   "exposable": true,
   "no_gui": false,
@@ -19,7 +19,7 @@
     "amd64"
   ],
   "created_at": 1793903452681,
-  "updated_at": 1794054959535,
+  "updated_at": 1794086598780,
   "dynamic_config": true,
   "form_fields": [
     {
