@@ -2,24 +2,24 @@
   "name": "Family demo",
   "id": "family-demo",
   "available": true,
-  "short_desc": "Family server with demo data or a copy of the real data, for testing dev builds. Start only while testing.",
+  "short_desc": "Family server with demo data or a copy of the real data, for testing dev builds and the web app. Start only while testing.",
   "author": "Florian Geymayer",
   "port": 8191,
   "categories": [
     "utilities"
   ],
   "description": "A second Family server for testing dev builds, never the real family's log: the invented Familie Muster (codes ANNA0001 admin, BEN00001) or a copy of the real Family data, taken from a read-only mount while Family keeps running. The dev app switches between them and pairs itself; this app's Data setting is the fallback. Start it only while testing and stop it afterwards: the homelab has little RAM to spare (capped at 200 MB, half a CPU).",
-  "tipi_version": 7,
-  "version": "dev-e39f0af",
+  "tipi_version": 8,
+  "version": "dev-d3cf9af",
   "source": "https://github.com/geymayer/family",
   "exposable": true,
-  "no_gui": true,
+  "no_gui": false,
   "supported_architectures": [
     "arm64",
     "amd64"
   ],
   "created_at": 1793903452681,
-  "updated_at": 1794022879972,
+  "updated_at": 1794026326210,
   "dynamic_config": true,
   "form_fields": [
     {

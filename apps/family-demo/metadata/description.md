@@ -66,3 +66,7 @@ domain, not the published host port.
 
 The Family server sends nothing out: no pushes, mails or webhooks; the Home relay asks it, never the
 other way round. Its nightly backups are switched off here (`FAMILY_BACKUP_HOUR=off`).
+
+### Web app
+
+Open the app (or `https://<domain>/web`) and sign in with a pairing code: on the demo data `ANNA0001` (Anna, admin) or `BEN00001` (Ben). On the copy, create a code in the dev app (Familie → Geräte). The browser then appears as one more device.
