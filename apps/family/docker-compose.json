@@ -2,7 +2,7 @@
   "services": [
     {
       "name": "family",
-      "image": "ghcr.io/geymayer/family-server:0.5.0",
+      "image": "ghcr.io/geymayer/family-server:0.6.0",
       "isMain": true,
       "internalPort": 8140,
       "environment": [
@@ -25,6 +25,10 @@
         {
           "key": "PAIR_PAGE_ALLOW_REMOTE",
           "value": "${PAIR_PAGE_ALLOW_REMOTE}"
+        },
+        {
+          "key": "FAMILY_JAVA_XMX",
+          "value": "${FAMILY_JAVA_XMX}"
         }
       ],
       "volumes": [
