@@ -9,8 +9,8 @@
     "utilities"
   ],
   "description": "Server for the Family apps: one shared log of a child's sleep, feeds, diapers, medicine and growth with a nap planner, synced between the caregivers' phones; the postpartum module, documents and findings (scanned and read on the server with Tesseract, full-text search), childcare and school (optional WebUntis import), reminders and a Kinderbetreuungsgeld calculator. Open it in the browser for the web app (sign in with a pairing code from the app). Weather, the contact search and WebUntis need outbound HTTPS.",
-  "tipi_version": 6,
-  "version": "0.6.1",
+  "tipi_version": 7,
+  "version": "0.6.3",
   "source": "https://github.com/geymayer/family",
   "exposable": true,
   "no_gui": false,
@@ -19,7 +19,7 @@
     "amd64"
   ],
   "created_at": 1793280575455,
-  "updated_at": 1794158907300,
+  "updated_at": 1794208739892,
   "dynamic_config": true,
   "form_fields": [
     {
@@ -62,6 +62,13 @@
       "required": false,
       "env_variable": "FAMILY_JAVA_XMX",
       "default": "256m"
+    },
+    {
+      "type": "password",
+      "label": "Google Places API key (contact search)",
+      "hint": "Optional. With a key the contact search asks Google Places (New) first, OpenStreetMap otherwise. Only the server sends the search text; restrict the key to the Places API (New) and set a budget alert.",
+      "required": false,
+      "env_variable": "FAMILY_GOOGLE_PLACES_KEY"
     }
   ]
 }

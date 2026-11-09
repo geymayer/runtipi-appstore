@@ -2,7 +2,7 @@
   "services": [
     {
       "name": "family",
-      "image": "ghcr.io/geymayer/family-server:0.6.1",
+      "image": "ghcr.io/geymayer/family-server:0.6.3",
       "isMain": true,
       "internalPort": 8140,
       "environment": [
@@ -29,6 +29,10 @@
         {
           "key": "FAMILY_JAVA_XMX",
           "value": "${FAMILY_JAVA_XMX}"
+        },
+        {
+          "key": "FAMILY_GOOGLE_PLACES_KEY",
+          "value": "${FAMILY_GOOGLE_PLACES_KEY}"
         }
       ],
       "volumes": [

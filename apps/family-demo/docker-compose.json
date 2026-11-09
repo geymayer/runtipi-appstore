@@ -2,7 +2,7 @@
   "services": [
     {
       "name": "family-demo",
-      "image": "ghcr.io/geymayer/family-server:0.6.1",
+      "image": "ghcr.io/geymayer/family-server:0.6.3",
       "isMain": true,
       "internalPort": 8140,
       "restart": "unless-stopped",
@@ -46,6 +46,10 @@
         {
           "key": "PAIR_PAGE_ALLOW_REMOTE",
           "value": "${PAIR_PAGE_ALLOW_REMOTE}"
+        },
+        {
+          "key": "FAMILY_GOOGLE_PLACES_KEY",
+          "value": "${FAMILY_GOOGLE_PLACES_KEY}"
         }
       ],
       "volumes": [
