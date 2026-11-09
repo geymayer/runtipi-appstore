@@ -9,8 +9,8 @@
     "utilities"
   ],
   "description": "Server for the Family apps: one shared log of a child's sleep, feeds, diapers, medicine and growth with a nap planner, synced between the caregivers' phones; the postpartum module, documents and findings (scanned and read on the server with Tesseract, full-text search), childcare and school (optional WebUntis import), reminders and a Kinderbetreuungsgeld calculator. Open it in the browser for the web app (sign in with a pairing code from the app). Weather, the contact search and WebUntis need outbound HTTPS.",
-  "tipi_version": 11,
-  "version": "0.7.1",
+  "tipi_version": 12,
+  "version": "0.8.0",
   "source": "https://github.com/geymayer/family",
   "exposable": true,
   "no_gui": false,
@@ -19,7 +19,7 @@
     "amd64"
   ],
   "created_at": 1793280575455,
-  "updated_at": 1794260005921,
+  "updated_at": 1794262877687,
   "dynamic_config": true,
   "form_fields": [
     {
@@ -69,6 +69,14 @@
       "hint": "Optional. With a key the contact search asks Google Places (New) first, OpenStreetMap otherwise. Only the server sends the search text; restrict the key to the Places API (New) and set a budget alert.",
       "required": false,
       "env_variable": "FAMILY_GOOGLE_PLACES_KEY"
+    },
+    {
+      "type": "text",
+      "label": "Region directory (regions)",
+      "hint": "Which regions the directory of hospitals, doctors, pharmacies and hotlines covers: ISO 3166-2 codes, comma separated, e.g. AT,AT-6 for Austria and Styria. The server loads them from OpenStreetMap once a week. Empty: no directory.",
+      "required": false,
+      "env_variable": "FAMILY_DIRECTORY_REGIONS",
+      "default": "AT,AT-6"
     }
   ]
 }

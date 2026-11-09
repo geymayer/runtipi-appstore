@@ -9,8 +9,8 @@
     "utilities"
   ],
   "description": "A second Family server for testing dev builds, never the real family's log: the invented Familie Muster (codes ANNA0001 admin, BEN00001) or a copy of the real Family data, taken from a read-only mount while Family keeps running. The dev app switches between them and pairs itself; this app's Data setting is the fallback. Start it only while testing and stop it afterwards: the homelab has little RAM to spare (capped at 200 MB, half a CPU).",
-  "tipi_version": 23,
-  "version": "0.7.1",
+  "tipi_version": 24,
+  "version": "0.8.0",
   "source": "https://github.com/geymayer/family",
   "exposable": true,
   "no_gui": false,
@@ -19,7 +19,7 @@
     "amd64"
   ],
   "created_at": 1793903452681,
-  "updated_at": 1794260005943,
+  "updated_at": 1794262877710,
   "dynamic_config": true,
   "form_fields": [
     {
@@ -80,6 +80,14 @@
       "hint": "Optional. With a key the contact search asks Google Places (New) first, OpenStreetMap otherwise. Only the server sends the search text; restrict the key to the Places API (New) and set a budget alert.",
       "required": false,
       "env_variable": "FAMILY_GOOGLE_PLACES_KEY"
+    },
+    {
+      "type": "text",
+      "label": "Region directory (regions)",
+      "hint": "Which regions the directory of hospitals, doctors, pharmacies and hotlines covers: ISO 3166-2 codes, comma separated, e.g. AT,AT-6 for Austria and Styria. The server loads them from OpenStreetMap once a week. Empty: no directory.",
+      "required": false,
+      "env_variable": "FAMILY_DIRECTORY_REGIONS",
+      "default": "AT,AT-6"
     }
   ]
 }
