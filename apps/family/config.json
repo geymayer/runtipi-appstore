@@ -9,8 +9,8 @@
     "utilities"
   ],
   "description": "Server for the Family apps: one shared log of a child's sleep, feeds, diapers, medicine and growth with a nap planner, synced between the caregivers' phones; the postpartum module, documents and findings (scanned and read on the server with Tesseract, full-text search), childcare and school (optional WebUntis import), reminders and a Kinderbetreuungsgeld calculator. Open it in the browser for the web app (sign in with a pairing code from the app). Weather, the contact search and WebUntis need outbound HTTPS.",
-  "tipi_version": 12,
-  "version": "0.8.0",
+  "tipi_version": 13,
+  "version": "0.9.1",
   "source": "https://github.com/geymayer/family",
   "exposable": true,
   "no_gui": false,
@@ -19,7 +19,7 @@
     "amd64"
   ],
   "created_at": 1793280575455,
-  "updated_at": 1794262877687,
+  "updated_at": 1794288531442,
   "dynamic_config": true,
   "form_fields": [
     {
@@ -77,6 +77,21 @@
       "required": false,
       "env_variable": "FAMILY_DIRECTORY_REGIONS",
       "default": "AT,AT-6"
+    },
+    {
+      "type": "url",
+      "label": "Relay URL (Album and Betreuung)",
+      "hint": "Optional. The Family relay on your internet-facing server, e.g. https://family.example.com (see deploy/relay/README.md in the Family repository). The server only connects out to it; everything it uploads is end-to-end encrypted.",
+      "required": false,
+      "env_variable": "FAMILY_RELAY"
+    },
+    {
+      "type": "password",
+      "label": "Relay admin token",
+      "hint": "The RELAY_ADMIN_TOKEN set on the relay (32+ characters). Both fields are needed for the album and Betreuung.",
+      "required": false,
+      "env_variable": "FAMILY_RELAY_ADMIN_TOKEN",
+      "min": 32
     }
   ]
 }

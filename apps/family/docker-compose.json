@@ -2,7 +2,7 @@
   "services": [
     {
       "name": "family",
-      "image": "ghcr.io/geymayer/family-server:0.8.0",
+      "image": "ghcr.io/geymayer/family-server:0.9.1",
       "isMain": true,
       "internalPort": 8140,
       "environment": [
@@ -37,6 +37,14 @@
         {
           "key": "FAMILY_DIRECTORY_REGIONS",
           "value": "${FAMILY_DIRECTORY_REGIONS}"
+        },
+        {
+          "key": "FAMILY_RELAY",
+          "value": "${FAMILY_RELAY}"
+        },
+        {
+          "key": "FAMILY_RELAY_ADMIN_TOKEN",
+          "value": "${FAMILY_RELAY_ADMIN_TOKEN}"
         }
       ],
       "volumes": [
