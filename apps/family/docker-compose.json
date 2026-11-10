@@ -2,7 +2,7 @@
   "services": [
     {
       "name": "family",
-      "image": "ghcr.io/geymayer/family-server:0.9.1",
+      "image": "ghcr.io/geymayer/family-server:0.10.0",
       "isMain": true,
       "internalPort": 8140,
       "environment": [
@@ -45,12 +45,52 @@
         {
           "key": "FAMILY_RELAY_ADMIN_TOKEN",
           "value": "${FAMILY_RELAY_ADMIN_TOKEN}"
+        },
+        {
+          "key": "FAMILY_MONITOR_GO2RTC",
+          "value": "http://family:${FAMILY_MONITOR_HUB_PASSWORD}@family-monitor:1984"
+        },
+        {
+          "key": "FAMILY_MONITOR_CANDIDATE",
+          "value": "${FAMILY_MONITOR_CANDIDATE}"
         }
       ],
       "volumes": [
         {
           "hostPath": "${APP_DATA_DIR}/data",
           "containerPath": "/data"
+        }
+      ],
+      "dependsOn": [
+        "family-monitor"
+      ]
+    },
+    {
+      "name": "family-monitor",
+      "image": "alexxit/go2rtc:1.9.15",
+      "command": [
+        "go2rtc",
+        "-config",
+        "{\"api\":{\"listen\":\":1984\",\"username\":\"family\",\"password\":\"${FAMILY_MONITOR_HUB_PASSWORD}\"},\"rtsp\":{\"listen\":\"127.0.0.1:8554\"},\"srtp\":{\"listen\":\"\"},\"webrtc\":{\"listen\":\":8555\",\"candidates\":[\"${FAMILY_MONITOR_CANDIDATE}\"],\"ice_servers\":[]},\"log\":{\"level\":\"info\"}}",
+        "-config",
+        "/config/go2rtc.yaml"
+      ],
+      "addPorts": [
+        {
+          "hostPort": 8556,
+          "containerPort": 8555,
+          "tcp": true
+        },
+        {
+          "hostPort": 8556,
+          "containerPort": 8555,
+          "udp": true
+        }
+      ],
+      "volumes": [
+        {
+          "hostPath": "${APP_DATA_DIR}/monitor",
+          "containerPath": "/config"
         }
       ]
     }
