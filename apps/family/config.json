@@ -9,8 +9,8 @@
     "utilities"
   ],
   "description": "Server for the Family apps: one shared log of a child's sleep, feeds, diapers, medicine and growth with a nap planner, synced between the caregivers' phones; the postpartum module, documents and findings (scanned and read on the server with Tesseract, full-text search), childcare and school (optional WebUntis import), reminders and a Kinderbetreuungsgeld calculator. Open it in the browser for the web app (sign in with a pairing code from the app). The Babyphone (an old phone as a station, IP cameras) runs through go2rtc in a second container: set this server's LAN address below and open port 8556 TCP/UDP for the home network and the VPN only. Weather, the contact search and WebUntis need outbound HTTPS.",
-  "tipi_version": 14,
-  "version": "0.10.0",
+  "tipi_version": 15,
+  "version": "0.11.0",
   "source": "https://github.com/geymayer/family",
   "exposable": true,
   "no_gui": false,
@@ -19,7 +19,7 @@
     "amd64"
   ],
   "created_at": 1793280575455,
-  "updated_at": 1794293503190,
+  "updated_at": 1794390195897,
   "dynamic_config": true,
   "form_fields": [
     {
