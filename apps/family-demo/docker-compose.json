@@ -2,7 +2,7 @@
   "services": [
     {
       "name": "family-demo",
-      "image": "ghcr.io/geymayer/family-server:0.11.0",
+      "image": "ghcr.io/geymayer/family-server:0.12.0",
       "isMain": true,
       "internalPort": 8140,
       "restart": "unless-stopped",
